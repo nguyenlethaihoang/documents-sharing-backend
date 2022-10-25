@@ -18,8 +18,12 @@ from django.urls import path
 
 # import vào cái View
 from course.views import GetAllCoursesAPIView
+from course.views import GetAllMajorsAPIView 
+from course.views import GetAllSubjectAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', GetAllCoursesAPIView.as_view()),
+    path('majors/', GetAllMajorsAPIView.as_view()),
+    path('subjects/', GetAllSubjectAPIView.as_view()),
 ]

@@ -4,16 +4,33 @@ from django.db import models
 
 # Create your models here.
 
-# tương tác với database
-# có các function, hàm để tương tác dữ liệu
-
 class Course(models.Model):
-    # các trường
-    ## tiêu đề khóa học
     title = models.CharField(max_length=255)
-    ## giá tiền
     price = models.IntegerField(default=0)
-    ## nội dung
     content = models.CharField(max_length=255)
 
-    ### thêm dữ liệu bằng cách  
+
+class Major(models.Model):
+    id = models.IntegerField(primary_key=True,max_length=100)
+    name = models.CharField(max_length=255) 
+
+class Subject(models.Model):
+    id = models.IntegerField(primary_key=True,max_length=255)
+    name = models.CharField(max_length=255) 
+    majorID = models.IntegerField(max_length=100)
+
+class User(models.Model):
+    id = models.IntegerField(primary_key=True,max_length=255)
+    studentID = models.CharField(max_length=10) 
+    name = models.CharField(max_length=255) 
+    permisson = models.IntegerField(default=1, max_length=3)
+
+class Document(models.Model):
+    id = models.IntegerField(primary_key=True,max_length=10000)
+    name = models.CharField(max_length=255) 
+    description = models.CharField(max_length=255) 
+    link = models.CharField(max_length=255) 
+    date = models.CharField(max_length=10) 
+    size = models.CharField(max_length=10) 
+    subjectID = models.CharField(max_length=100) 
+    userID = models.CharField(max_length=100) 
