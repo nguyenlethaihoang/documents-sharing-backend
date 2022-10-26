@@ -11,24 +11,30 @@ class Course(models.Model):
 
 
 class Major(models.Model):
-    id = models.IntegerField(primary_key=True,max_length=100)
+    # id = models.IntegerField(primary_key=True,max_length=100)
     name = models.CharField(max_length=255) 
 
 class Subject(models.Model):
-    id = models.IntegerField(primary_key=True,max_length=255)
+    # id = models.IntegerField(primary_key=True,max_length=255)
     name = models.CharField(max_length=255) 
     majorID = models.IntegerField(max_length=100)
+    imgUrl = models.CharField(max_length=255, default='') 
+
 
 class User(models.Model):
-    id = models.IntegerField(primary_key=True,max_length=255)
+    # id = models.IntegerField(primary_key=True,max_length=255)
     studentID = models.CharField(max_length=10) 
     name = models.CharField(max_length=255) 
     permisson = models.IntegerField(default=1, max_length=3)
 
 class Document(models.Model):
-    id = models.IntegerField(primary_key=True,max_length=10000)
+    # id = models.IntegerField(primary_key=True,max_length=10000)
     name = models.CharField(max_length=255) 
-    description = models.CharField(max_length=255) 
+    description = models.CharField(max_length=255)
+    # 1: pending
+    # 2: authorize
+    # 3: unauthorize
+    status = models.IntegerField(default=1, max_length=3)
     link = models.CharField(max_length=255) 
     date = models.CharField(max_length=10) 
     size = models.CharField(max_length=10) 
