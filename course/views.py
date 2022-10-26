@@ -1,9 +1,12 @@
 from xmlrpc.client import ResponseError
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Course, Major, Subject, User, Document
+from django.http import JsonResponse
+from django.core import serializers  
 from .serializer import GetAllCourses, GetAllMajor, GetAllSubject, GetAllUser, GetAllDocument
 # Create your views here.
 
@@ -81,8 +84,15 @@ class UpadateSubjectAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # -----------------------------------------------------------
 # Document
-class GetAllDocumentAPIView(APIView):
+class GetAllDocumentAPIView(APIView):   
     def get(self, request):
         list_document =  Document.objects.all()
-        mydata = GetAllDocument(list_document, many=True)
-        return Response( data=mydata.data, status=status.HTTP_200_OK)
+        # mydata = GetAllDocument(list_document, many=True)
+        mydata = GetAllDocument(list_document,context={'request': request}, many=True)
+        # response = serializers.serialize('json', mydata.data)  
+        # return JsonResponse( data=mydata.data, status=status.HTTP_200_OK)
+        # return Response( data=mydata.data, status=status.HTTP_200_OK)
+        # return JsonResponse({'text': 'Just rendering some JSON :)'})
+        # return JsonResponse(data=mydata.data, safe=False, content_type="application/json",)
+        return JsonResponse(data=mydata.data, safe=False)
+        
