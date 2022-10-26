@@ -49,6 +49,7 @@ class PostSubjectAPIView(APIView):
         data = {
             'name': request.data.get('name'), 
             'majorID': request.data.get('majorID'), 
+            'imgUrl': request.data.get('imgUrl')
         }
         serializer = GetAllSubject(data=data)
         if serializer.is_valid():
