@@ -35,8 +35,14 @@ class Document(models.Model):
     # 2: authorize
     # 3: unauthorize
     status = models.IntegerField(default=1, max_length=3)
+    # 1: slide
+    # 2: mid-term
+    # 3: final-term
+    type = models.IntegerField(default=1, max_length=100)
     link = models.CharField(max_length=255) 
     date = models.CharField(max_length=10) 
     size = models.CharField(max_length=10) 
     subjectID = models.CharField(max_length=100) 
-    userID = models.CharField(max_length=100) 
+    userID = models.CharField(max_length=100)
+    imgUrl = models.CharField(max_length=255, default='https://vcdn1-vnexpress.vnecdn.net/2019/06/04/Hoa1-6179-1559618180.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=L1c433SwHnT3vn1ZPXOhyQ') 
+

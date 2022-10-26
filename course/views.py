@@ -64,9 +64,6 @@ class UpadateSubjectAPIView(APIView):
         except Subject.DoesNotExist:
             return None
     def put(self, request, subject_id, *args, **kwargs):
-        '''
-        Updates the subject item with given subject_id if exists
-        '''
         subject_instance = self.get_object(subject_id)
         if not subject_instance:
             return Response(
@@ -82,3 +79,10 @@ class UpadateSubjectAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# -----------------------------------------------------------
+# Document
+class GetAllDocumentAPIView(APIView):
+    def get(self, request):
+        list_document =  Document.objects.all()
+        mydata = GetAllDocument(list_document, many=True)
+        return Response( data=mydata.data, status=status.HTTP_200_OK)
