@@ -29,4 +29,4 @@ class GetAllUser(serializers.ModelSerializer):
 class GetAllDocument(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID')
+        fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID', 'type')
