@@ -17,7 +17,7 @@ class GetAllMajor(serializers.ModelSerializer):
 class GetAllSubject(serializers.ModelSerializer):
     class Meta:
         model = Subject
-        fields = ('id', 'name' , 'majorID')
+        fields = ('id', 'name' , 'majorID', 'imgUrl')
 # -----------------------------------------------------------
 # User
 class GetAllUser(serializers.ModelSerializer):
@@ -29,4 +29,4 @@ class GetAllUser(serializers.ModelSerializer):
 class GetAllDocument(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID', 'type')
+        fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID', 'type', 'status', 'imgUrl')

@@ -5,7 +5,7 @@ from django.urls import path
 from course.views import GetAllCoursesAPIView
 from course.views import GetAllMajorsAPIView 
 from course.views import GetAllSubjectAPIView, GetDetailSubjectAPIView, PostSubjectAPIView, UpadateSubjectAPIView
-from course.views import GetAllDocumentAPIView 
+from course.views import GetAllDocumentAPIView, PostDocumentAPIView, GetDetailDocumentAPIView, UpadateDocumentAPIView
 
 
 urlpatterns = [
@@ -19,4 +19,8 @@ urlpatterns = [
     path('subject/<int:subject_id>/', UpadateSubjectAPIView.as_view()),  
     # url of document
     path('documents/', GetAllDocumentAPIView.as_view()),
+    path('documents/<int:document_id>/', GetDetailDocumentAPIView.as_view()),
+    path('document/', PostDocumentAPIView.as_view()),
+    path('document/<int:document_id>/', UpadateDocumentAPIView.as_view()),  
+
 ]
