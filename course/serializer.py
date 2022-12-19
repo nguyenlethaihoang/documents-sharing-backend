@@ -26,9 +26,14 @@ class GetAllUser(serializers.ModelSerializer):
         fields = ('id', 'studentID' , 'name', 'permisson')
 # -----------------------------------------------------------
 # Document
-class GetAllDocument(serializers.ModelSerializer):
-    class Meta:
-        model = Document
-        fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID', 'type', 'status', 'imgUrl')
+# class GetAllDocument(serializers.ModelSerializer):
+#     class Meta:
+#         model = Document
+#         fields = ('id', 'name' , 'link', 'date', 'size', 'subjectID', 'userID', 'type', 'status', 'imgUrl', 'file')
 
 # 
+
+class DocumentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Document
+        fields = ['name','status', 'type', 'link', 'date','size' ,'subjectID'  ,'userID' ,'imgUrl','file']

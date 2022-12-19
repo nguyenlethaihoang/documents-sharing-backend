@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    # 'api.view',
     'course',
 ]
 
@@ -117,31 +117,6 @@ DATABASES = {
     }   
     
 }
-from datetime import timedelta
-from typing import List, Tuple
-
-MINIO_ENDPOINT = '103.75.185.190:9000/'
-MINIO_EXTERNAL_ENDPOINT = "103.75.185.190:9000/"  # Default is same as MINIO_ENDPOINT
-MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = False  # Default is same as MINIO_USE_HTTPS
-MINIO_ACCESS_KEY = 'ROOTNAME'
-MINIO_SECRET_KEY = 'CHANGEME123'
-MINIO_USE_HTTPS = False
-MINIO_URL_EXPIRY_HOURS = timedelta(days=1)  # Default is 7 days (longest) if not defined
-MINIO_CONSISTENCY_CHECK_ON_START = False
-MINIO_PRIVATE_BUCKETS = [
-    'bucket-uit-private',
-]
-MINIO_PUBLIC_BUCKETS = [
-    'bucket-uit-document',
-    'bucket-uit-video',
-]
-MINIO_POLICY_HOOKS: List[Tuple[str, dict]] = []
-# MINIO_MEDIA_FILES_BUCKET = 'my-media-files-bucket'  # replacement for MEDIA_ROOT
-# MINIO_STATIC_FILES_BUCKET = 'my-static-files-bucket'  # replacement for STATIC_ROOT
-MINIO_BUCKET_CHECK_ON_SAVE = True  # Default: True // Creates bucket if missing, then save
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -182,3 +157,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR, 'modia')
+MEDIA_URL = '/media/'
