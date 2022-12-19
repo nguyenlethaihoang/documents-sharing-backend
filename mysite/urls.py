@@ -22,5 +22,4 @@ urlpatterns = [
     path('documents/<int:document_id>/', GetDetailDocumentAPIView.as_view()),
     path('document/', PostDocumentAPIView.as_view()),
     path('document/<int:document_id>/', UpadateDocumentAPIView.as_view()),  
-
 ]

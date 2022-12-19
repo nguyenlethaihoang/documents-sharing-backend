@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,7 +58,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
-    'course'
+    'course',
+    'minio_storage',
 ]
 
 MIDDLEWARE = [
@@ -110,10 +112,23 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': 'password',
         'HOST': '103.75.185.190',
-        'PORT': '7999',
+        'PORT': '5003',
     }   
     
 }
+import os
+# S3 Storage MINIO
+
+DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
+MINIO_STORAGE_ENDPOINT = 'http://103.75.185.190:9000/'
+MINIO_STORAGE_ACCESS_KEY = 'ROOTNAME'
+MINIO_STORAGE_SECRET_KEY = 'CHANGEME123'
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_BUCKET_NAME = 'second-bucket'
+MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+# MINIO_STORAGE_STATIC_BUCKET_NAME = 'local-static'
+# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
 
 
 # Password validation
