@@ -26,10 +26,11 @@ SECRET_KEY = 'django-insecure-qcv1s!6id0lsd652tzs-ddaz0_lw3*a&tj5d^3t_*!y_c#rr1-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+CORS_ORIGIN_ALLOW_ALL= True
 ALLOWED_HOSTS = [
     '*'
 ]
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # for localhost (REACT Default)
