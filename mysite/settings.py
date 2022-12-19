@@ -37,13 +37,15 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',  # for localhost (Developlemt)
     'http://192.168.0.50:8080',  # for network (Development)
     'http://uit.techdoor.space:80',
+    'http://192.168.0.50:80',
 )
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',  # for localhost (REACT Default)
     'http://103.75.185.190:4444',  # for network 
     'http://localhost:8080',  # for localhost (Developlemt)
-    'http://192.168.0.50:8080',  # for network (Development)
+    'http://192.168.0.50:8080',
+    'http://192.168.0.50:80',  # for network (Development)
     'http://uit.techdoor.space:80',
 ]
 
