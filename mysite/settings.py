@@ -19,12 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-qcv1s!6id0lsd652tzs-ddaz0_lw3*a&tj5d^3t_*!y_c#rr1-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL= True
 ALLOWED_HOSTS = [
@@ -52,7 +51,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -60,11 +58,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
     'corsheaders',
     'course',
-    'minio_storage',
 ]
 
 MIDDLEWARE = [
@@ -121,19 +117,29 @@ DATABASES = {
     }   
     
 }
-import os
-# S3 Storage MINIO
+from datetime import timedelta
+from typing import List, Tuple
 
-DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
-STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
-MINIO_STORAGE_ENDPOINT = 'http://103.75.185.190:9000/'
-MINIO_STORAGE_ACCESS_KEY = 'ROOTNAME'
-MINIO_STORAGE_SECRET_KEY = 'CHANGEME123'
-MINIO_STORAGE_USE_HTTPS = False
-MINIO_STORAGE_MEDIA_BUCKET_NAME = 'second-bucket'
-MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
-# MINIO_STORAGE_STATIC_BUCKET_NAME = 'local-static'
-# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
+MINIO_ENDPOINT = '103.75.185.190:9000/'
+MINIO_EXTERNAL_ENDPOINT = "103.75.185.190:9000/"  # Default is same as MINIO_ENDPOINT
+MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = False  # Default is same as MINIO_USE_HTTPS
+MINIO_ACCESS_KEY = 'ROOTNAME'
+MINIO_SECRET_KEY = 'CHANGEME123'
+MINIO_USE_HTTPS = False
+MINIO_URL_EXPIRY_HOURS = timedelta(days=1)  # Default is 7 days (longest) if not defined
+MINIO_CONSISTENCY_CHECK_ON_START = False
+MINIO_PRIVATE_BUCKETS = [
+    'bucket-uit-private',
+]
+MINIO_PUBLIC_BUCKETS = [
+    'bucket-uit-document',
+    'bucket-uit-video',
+]
+MINIO_POLICY_HOOKS: List[Tuple[str, dict]] = []
+# MINIO_MEDIA_FILES_BUCKET = 'my-media-files-bucket'  # replacement for MEDIA_ROOT
+# MINIO_STATIC_FILES_BUCKET = 'my-static-files-bucket'  # replacement for STATIC_ROOT
+MINIO_BUCKET_CHECK_ON_SAVE = True  # Default: True // Creates bucket if missing, then save
+
 
 
 # Password validation

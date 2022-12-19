@@ -30,3 +30,5 @@ class GetAllDocument(serializers.ModelSerializer):
     class Meta:
         model = Document
         fields = ('id', 'name' , 'description', 'link', 'date', 'size', 'subjectID', 'userID', 'type', 'status', 'imgUrl')
+
+# 

@@ -1,7 +1,6 @@
 from email.policy import default
 from operator import mod
 from django.db import models
-
 # Create your models here.
 
 class Course(models.Model):
@@ -45,4 +44,3 @@ class Document(models.Model):
     subjectID = models.CharField(max_length=100) 
     userID = models.CharField(max_length=100)
     imgUrl = models.CharField(max_length=255, default='https://vcdn1-vnexpress.vnecdn.net/2019/06/04/Hoa1-6179-1559618180.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=L1c433SwHnT3vn1ZPXOhyQ') 
-

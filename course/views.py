@@ -10,6 +10,13 @@ from django.core import serializers
 from .serializer import GetAllCourses, GetAllMajor, GetAllSubject, GetAllUser, GetAllDocument
 
 from rest_framework import permissions
+from django.http import HttpResponse
+from rest_framework import status
+from .models import *
+from rest_framework.decorators import api_view , permission_classes
+from rest_framework.response import Response
+from rest_framework import permissions
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -152,3 +159,4 @@ class UpadateDocumentAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
